@@ -1,5 +1,5 @@
-import {executeQuery} from '../database/database.js';
-import {bcrypt} from '../deps.js';
+import { executeQuery } from '../database/database.js';
+import { bcrypt } from '../deps.js';
 
 /**
  * 

@@ -1,0 +1,61 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navigation.ejs') %>
+<h2>Week Summary for period <%= startingDate %> to <%= endingDate %></h2>
+<% if (!currentWeekMorningSummary && !currentWeekEveningSummary) { %>
+    <p>No data available</p>
+<% } else { %>
+    <div class="row">
+        Average sleep duration: <% if (currentWeekMorningSummary && currentWeekMorningSummary.sleep_duration_avg) { %> <%= currentWeekMorningSummary.sleep_duration_avg %> hours <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average time spent on sports and exercise: <% if (currentWeekEveningSummary && currentWeekEveningSummary.sports_and_exercise_duration_avg) { %> <%= currentWeekEveningSummary.sports_and_exercise_duration_avg %> hours <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average time spent studying: <% if (currentWeekEveningSummary && currentWeekEveningSummary.studying_duration_avg) { %> <%= currentWeekEveningSummary.studying_duration_avg %> hours <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average sleep quality: <% if (currentWeekMorningSummary && currentWeekMorningSummary.sleep_quality_avg) { %> <%= currentWeekMorningSummary.sleep_quality_avg %> <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average morning mood: <% if (currentWeekMorningSummary && currentWeekMorningSummary.generic_mood_avg) { %> <%= currentWeekMorningSummary.generic_mood_avg %> <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average evening mood:<% if (currentWeekEveningSummary && currentWeekEveningSummary.generic_mood_avg) { %> <%= currentWeekEveningSummary.generic_mood_avg %> <% } else { %> No data available <% } %>
+    </div>
+<% } %>
+<h2>Monthly Summary for <%= amonth %></h2>
+<% if (!currentMonthMorningSummary && !currentMonthEveningSummary) { %>
+    <p>No data available</p>
+<% } else { %>
+    <div class="row">
+        Average sleep duration: <% if (currentMonthMorningSummary && currentMonthMorningSummary.sleep_duration_avg) { %> <%= currentMonthMorningSummary.sleep_duration_avg %> hours <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average time spent on sports and exercise: <% if (currentMonthEveningSummary && currentMonthEveningSummary.sports_and_exercise_duration_avg) { %> <%= currentMonthEveningSummary.sports_and_exercise_duration_avg %> hours <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average time spent studying: <% if (currentMonthEveningSummary && currentMonthEveningSummary.studying_duration_avg) { %> <%= currentMonthEveningSummary.studying_duration_avg %> hours <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average sleep quality: <% if (currentMonthMorningSummary && currentMonthMorningSummary.sleep_quality_avg) { %> <%= currentMonthMorningSummary.sleep_quality_avg %> <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average morning mood: <% if (currentMonthMorningSummary && currentMonthMorningSummary.generic_mood_avg) { %> <%= currentMonthMorningSummary.generic_mood_avg %> <% } else { %> No data available <% } %>
+    </div>
+    <div class="row">
+        Average evening mood:<% if (currentMonthEveningSummary && currentMonthEveningSummary.generic_mood_avg) { %> <%= currentMonthEveningSummary.generic_mood_avg %> <% } else { %> No data available <% } %>
+    </div>
+<% } %>
+
+<form method="POST" action="/behavior/summary">
+    <div class="form-group">
+      <label for="aweek">Summary Week</label>
+      <input type="week" class="form-control" name="aweek" value="<%= aweek %>">
+    </div>
+    <div class="form-group">
+      <label for="amonth">Summary Month</label>
+      <input type="month" class="form-control" name="amonth" value="<%= amonth %>">
+    </div>
+        <button type="submit" class="btn btn-primary">Get Summary</button>
+</form>
+<%- include('../partials/footer.ejs') %>

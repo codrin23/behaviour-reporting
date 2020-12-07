@@ -1,3 +1,50 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navigation.ejs') %>
+<div class="application-description">
+    The application's pupose is to provide users with the possibility of reporting daily behavior activities such as:
+    <ul>
+        <li>Sleep duration and sleep quality</li>
+        <li>Time spent on sports and exercise</li>
+        <li>Time spent studying</li>
+        <li>Regularity and quality of eating</li>
+        <li>Generic mood</li>
+    </ul>
+    Furthermore, the users are able to see reports on a weekly or monthly period of their activity. 
+</div>
+<div class="users-trends">
+    <div class="morning-trend">
+        <div class="row morning-trend-yesterday">
+            Yesterday generic morning mood: <%= moodSummaryYesterday.morning_mood_avg %> 
+        </div>
+        <div class="row morning-trend-today">
+            Today generic morning mood: <%= moodSummaryToday.morning_mood_avg %> 
+        </div>
+        <% if (moodSummaryYesterday.morning_mood_avg > moodSummaryToday.morning_mood_avg) { %>
+            <div class="decreasing-trend">
+                Today morning seems like a harsh day. Please, take care!
+            </div>
+        <% } else { %>
+            <div class="increasing-trend">
+                Today morning looks absolutely lovely. Have an awesome day!
+            </div>
+        <% } %>
+    </div>
+    <div class="evening-trend">
+        <div class="row evening-trend-yesterday">
+            Yesterday generic evening mood: <%= moodSummaryYesterday.evening_mood_avg %> 
+        </div>
+        <div class="row evening-trend-today">
+            Today generic evening mood: <%= moodSummaryToday.evening_mood_avg %> 
+        </div>
+        <% if (moodSummaryYesterday.evening_mood_avg > moodSummaryToday.evening_mood_avg) { %>
+            <div class="decreasing-trend">
+                Today evening seems rather unpleasent. Please, avoid making bad decision!
+            </div>
+        <% } else { %>
+            <div class="increasing-trend">
+                Today evening looks absolutely lovely. Have an awesome night-out!
+            </div>
+        <% } %>
+    </div>
+</div>
 <%- include('./partials/footer.ejs') %>

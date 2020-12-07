@@ -1,14 +1,20 @@
 <%- include('../partials/header.ejs') %>
 <h1>Login!</h1>
 <form method="POST" action="/auth/login">
-    <label for="email">Email: </label>
-    <input type="email" name="email" value="<%= email %>"/>
-    <label for="password">Password: </label>
-    <input type="password" name="password" value="<%= password %>" />
-    <input type="submit" value="Login!" />
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" name="email" placeholder="Enter email" value="<%= email %>">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Password" value="<%= password %>">
+    </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <form action="/auth/registration">
-    <input type="submit" value="Register!" />
-</form>
+    <p>Not a user?</p>
+    <input type="submit" class="btn btn-primary" value="Register!" />
+ </form>
+  
 <%- include('../partials/errors.ejs') %>
 <%- include('../partials/footer.ejs') %>

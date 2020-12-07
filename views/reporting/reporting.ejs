@@ -1,4 +1,85 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navigation.ejs') %>
+<script src="../../static/reporting/reporting.js" defer></script>
 <h1>Reporting</h1>
+<div>
+    <% if (submittedMorningReport) { %>
+        <p>Today's morning report status: submitted</p>
+    <% } else { %>
+        <p>Today's morning report status: not submitted</p>
+    <% } %>
+    <% if (submittedEveningReport) { %>
+        <p>Today's evening report status: submitted</p>
+    <% } else { %>
+        <p>Today's evening report status: not submitted</p>
+    <% } %>
+</div>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Select Reporting
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <button class="dropdown-item" type="button" onclick="activateMorningReport()">Morning Report</button>
+      <button class="dropdown-item" type="button" onclick="activateEveningReport()">Evening Report</button>
+    </div>
+  </div>
+<div id="forms-container">
+    <form method="POST" action="/behavior/reporting/addMorningReport" id="morningReportingForm" class="d-flex flex-column">
+        <div>
+            <p>Morning Report</p>
+        </div>
+        <div>
+            <label for="morningReportingDate">Reporting Date: </label>
+            <input type="date" name="morningReportingDate" value="<%= morningReportingDate %>"/>
+        </div>
+        <div>
+            <label for="sleepDuration">Sleep Duration: </label>
+            <input type="number" name="sleepDuration" min="0" max="24" step=".01" placeholder="8.25 hours" value="<%= sleepDuration %>" style="width:100px;"/>
+        </div>
+        <div>
+            <label for="sleepQuality">Sleep Quality (Very Poor - Excelent):</label>
+            <input type="range" name="sleepQuality" min="1" max="5" value="<%= sleepQuality %>">
+        </div>
+        <div>
+            <label for="morningGenericMood">Generic Mood (Very Poor - Excelent):</label>
+            <input type="range" name="morningGenericMood" min="1" max="5" value="<%= morningGenericMood %>">
+        </div>
+        <div>
+            <input type="submit" value="Report!" />
+        </div>
+    </form>
+
+    <form method="POST" action="/behavior/reporting/addEveningReport" id="eveningReportingForm" class="d-flex flex-column">
+        <div>
+            <p>Evening Report</p>
+        </div>
+        <div>
+            <label for="eveningReportingDate">Reporting Date: </label>
+            <input type="date" name="eveningReportingDate" value="<%= eveningReportingDate %>"/>
+        </div>
+        <div>
+            <label for="sportsAndExerciseDuration ">Sports and Exercise Duration: </label>
+            <input type="number" name="sportsAndExerciseDuration" min="0" max="24" step=".01" placeholder="8.25 hours" value="<%= sportsAndExerciseDuration %>" style="width:100px;"/>
+        </div>
+        <div>
+            <label for="studyingDuration">Studying Duration:</label>
+            <input type="number" name="studyingDuration" min="0" max="24" step=".01" placeholder="8.25 hours" value="<%= studyingDuration %>" style="width:100px;"/>
+        </div>
+        <div>
+            <label for="regularityAndQualityEating">Regularity and Quality of Eating (Very Poor - Excelent):</label>
+            <input type="range" name="regularityAndQualityEating" min="1" max="5" value="<%= regularityAndQualityEating %>">
+        </div>
+        <div>
+            <label for="eveningGenericMood">Generic Mood (Very Poor - Excelent):</label>
+            <input type="range" name="eveningGenericMood" min="1" max="5" value="<%= eveningGenericMood %>">
+        </div>
+        <div>
+            <input type="submit" value="Report!" />
+        </div>
+    </form>
+</div>
+<%- include('../partials/errors.ejs') %>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <%- include('../partials/footer.ejs') %>

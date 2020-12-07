@@ -2,6 +2,7 @@ import { Application, Session } from "./deps.js";
 import { router } from "./routes/routes.js";
 import * as middleware from './middlewares/middlewares.js';
 import { viewEngine, engineFactory, adapterFactory } from "./deps.js";
+import { oakCors } from './deps.js';
 
 const app = new Application();
 
@@ -20,6 +21,8 @@ app.use(middleware.errorMiddleware);
 app.use(middleware.requestLoggingMiddleware);
 app.use(middleware.serveStaticFilesMiddleware);
 app.use(middleware.authMiddleware);
+
+app.use(oakCors());
 
 app.use(router.routes());
 

@@ -36,7 +36,7 @@ const serveStaticFilesMiddleware = async(context, next) => {
 }
 
 const authMiddleware = async({request, response, session}, next) => {
-  if (request.url.pathname === '/') {
+  if (request.url.pathname === '/' || request.url.pathname.startsWith('/api')) {
     await next();
     return;
   }
