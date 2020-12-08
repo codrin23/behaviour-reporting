@@ -37,6 +37,12 @@ CREATE TABLE evening_reports (
 PGHOST="hostname-possibly-at-elephantsql.com" PGDATABASE="database-name" PGDATABASE="user-name-typically-same-as-database-name" PGPASSWORD="password" CONCURRENT_CONNECTIONS="4" deno run --allow-net --allow-env --allow-read --unstable app.js
 ~~~~
 
+## Running the Application Tests Locally:
+
+~~~~js
+PGHOST="hostname-possibly-at-elephantsql.com" PGDATABASE="database-name" PGDATABASE="user-name-typically-same-as-database-name" PGPASSWORD="password" CONCURRENT_CONNECTIONS="4" deno test --allow-net --allow-env --allow-read --unstable tests
+~~~~
+
 ## Tasks:
 
 1. Application structure
@@ -163,7 +169,7 @@ PGHOST="hostname-possibly-at-elephantsql.com" PGDATABASE="database-name" PGDATAB
 
 8. Testing
 
-- [ ] The application has at least 5 meaningful automated tests. All tests detect if e.g. tested functionality is changed so that it no longer works as expected.
+- [x] The application has at least 5 meaningful automated tests. All tests detect if e.g. tested functionality is changed so that it no longer works as expected.
 - [ ] The application has at least 10 meaningful automated tests. All tests detect if e.g. tested functionality is changed so that it no longer works as expected.
 - [ ] The application has at least 15 meaningful automated tests. All tests detect if e.g. tested functionality is changed so that it no longer works as expected.
 - [ ] The application has at least 20 meaningful automated tests. All tests detect if e.g. tested functionality is changed so that it no longer works as expected.
@@ -216,4 +222,4 @@ PGHOST="hostname-possibly-at-elephantsql.com" PGDATABASE="database-name" PGDATAB
 - [x] Documentation contains necessary CREATE TABLE statements needed to create the database used by the application
 - [ ] Documentation contains the address at which the application can currently be accessed
 - [x] Documentation contains guidelines for running the application
-- [ ] Documentation contains guidelines for running tests
+- [x] Documentation contains guidelines for running tests
