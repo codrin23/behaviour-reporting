@@ -1,7 +1,7 @@
 import { Router } from "../deps.js";
 import { register, authenticate, logout, showLoginForm, showRegisterForm } from "./controllers/userController.js";
 import { landing } from './controllers/landingController.js';
-import { startReporting, insertMorningReport, insertEveningReport } from './controllers/reportingController.js';
+import { startReporting, insertMorningReport, insertEveningReport, morningReporting, eveningReporting } from './controllers/reportingController.js';
 import { showSummary, calculateSummary } from './controllers/summaryController.js';
 import * as summaryApi from './apis/summaryApi.js';
 
@@ -16,6 +16,8 @@ router.post('/auth/login', authenticate);
 router.post('/auth/logout', logout);
 
 router.get('/behavior/reporting', startReporting);
+router.get('/behavior/reporting/morning', morningReporting);
+router.get('/behavior/reporting/evening', eveningReporting);
 router.post('/behavior/reporting/addMorningReport', insertMorningReport);
 router.post('/behavior/reporting/addEveningReport', insertEveningReport);
 

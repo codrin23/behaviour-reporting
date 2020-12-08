@@ -12,14 +12,10 @@ const showSummary = async({render, session}) => {
   const endingDate = getDateOfISOWeek(getWeekNumber(currentDate) + 1, currentDate.getFullYear());
   endingDate.setDate(endingDate.getDate() - 1);
 
-
-  console.log({startDate: startingDate.toISOString().substr(0, 10), endDate: endingDate.toISOString().substr(0, 10)});
   const currentWeekMorningSummary = await computeWeekMorningSummary(user.id, startingDate.toISOString().substr(0, 10), endingDate.toISOString().substr(0, 10));
   const currentWeekEveningSummary = await computeWeekEveningSummary(user.id, startingDate.toISOString().substr(0, 10), endingDate.toISOString().substr(0, 10));
   const currentMonthMorningSummary = await computeMonthMorningSummary(user.id, currentDate.getFullYear(), currentDate.getMonth() + 1);
   const currentMonthEveningSummary = await computeMonthEveningSummary(user.id, currentDate.getFullYear(), currentDate.getMonth() + 1);
-
-  console.log({currentWeekMorningSummary, currentWeekEveningSummary, currentMonthMorningSummary, currentMonthEveningSummary});
 
   render("./summary/summary.ejs", {
       authenticated, user, aweek, amonth, 
@@ -48,8 +44,6 @@ const calculateSummary = async({render, session, request}) => {
   const currentWeekEveningSummary = await computeWeekEveningSummary(user.id, startingDate.toISOString().substr(0, 10), endingDate.toISOString().substr(0, 10));
   const currentMonthMorningSummary = await computeMonthMorningSummary(user.id, amonth.substr(0, 4), amonth.substr(5, 2));
   const currentMonthEveningSummary = await computeMonthEveningSummary(user.id, amonth.substr(0, 4), amonth.substr(5, 2));
-
-  console.log({currentWeekMorningSummary, currentWeekEveningSummary, currentMonthMorningSummary, currentMonthEveningSummary});
 
   render("./summary/summary.ejs", {
     authenticated, user, aweek, amonth, 

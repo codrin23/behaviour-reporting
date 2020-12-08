@@ -20,8 +20,6 @@ CREATE TABLE morning_reports (
     generic_mood SMALLINT
 );
 
-CREATE UNIQUE INDEX ON morning_reports(reporting_date);
-
 CREATE TABLE evening_reports (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id), 
@@ -31,8 +29,12 @@ CREATE TABLE evening_reports (
     regularity_and_quality_eating SMALLINT,
     generic_mood SMALLINT
 );
+~~~~
 
-CREATE UNIQUE INDEX ON evening_reports(reporting_date);
+## Running the Application Locally:
+
+~~~~js
+PGHOST="hostname-possibly-at-elephantsql.com" PGDATABASE="database-name" PGDATABASE="user-name-typically-same-as-database-name" PGPASSWORD="password" CONCURRENT_CONNECTIONS="4" deno run --allow-net --allow-env --allow-read --unstable app.js
 ~~~~
 
 ## Tasks:
@@ -44,7 +46,7 @@ CREATE UNIQUE INDEX ON evening_reports(reporting_date);
 - [x] Project launched from app.js, which is in the root folder
 - [x] Configurations in a separate folder (e.g. config)
   - [x] Test configurations separate from production configurations
-  - [ ] Configurations loaded from environmental variables or e.g. dotenv -files
+  - [x] Configurations loaded from environmental variables or e.g. dotenv -files
   
 2. Users
 
@@ -115,7 +117,7 @@ CREATE UNIQUE INDEX ON evening_reports(reporting_date);
   - [x] Form fields are validated
     - [x] Time spent on sports and exercise and time spent studying are reported in hours must be entered, must be a number (can be decimal), and cannot be negative
     - [x] Regularity and quality of eating and generic mood must be reported using numbers between 1 and 5 (integers).
-    - [ ] In case of validation errors, form fields are populated
+    - [x] In case of validation errors, form fields are populated
 - [x] Reported values are stored into the database
   - [x] The database schema used for reporting works for the task
   - [x] Reporting is user-specific (all reported values are stored under the currently authenticated user)
@@ -179,7 +181,7 @@ CREATE UNIQUE INDEX ON evening_reports(reporting_date);
 - [x] Expensive calculations such as calculating averages are done in the database
 - [x] Indices are used when joining tables if the queries are such that they are used often
 - [x] Database uses a connection pool
-- [ ] Database credentials are not included in the code
+- [x] Database credentials are not included in the code
 
 11. User interface / views
 
@@ -193,7 +195,7 @@ CREATE UNIQUE INDEX ON evening_reports(reporting_date);
   - [x] In the case of validation errors, form fields are populated (with the exception of the login page)
 - [x] User interface uses a style library or self-made stylesheets (see e.g. Twitter Bootstrap for a style library)
   - [x] If Twitter Bootstrap or other external style libraries are used, they are used over a content delivery network
-- [ ] Different pages of the application follow the same style
+- [x] Different pages of the application follow the same style
 - [x] User sees if the user has logged in (e.g. with a message 'Logged in as my@email.net' shown at the top of the page)
 
 12. APIs
@@ -207,11 +209,11 @@ CREATE UNIQUE INDEX ON evening_reports(reporting_date);
 13. Deployment
 
 - [ ] Application is available and working in an online location (e.g. Heroku) at an address provided in the documentation
-- [ ] Application can be run locally following the guidelines in documentation
+- [x] Application can be run locally following the guidelines in documentation
 
 14. Documentation
 
 - [x] Documentation contains necessary CREATE TABLE statements needed to create the database used by the application
 - [ ] Documentation contains the address at which the application can currently be accessed
-- [ ] Documentation contains guidelines for running the application
+- [x] Documentation contains guidelines for running the application
 - [ ] Documentation contains guidelines for running tests

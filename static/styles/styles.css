@@ -1,0 +1,129 @@
+body {
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+  }
+
+.auth-form-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+.register-footer {
+  display: flex;
+  align-items: center;
+  flex-direction: row; 
+  justify-content: center;
+  background-color: #f6f6f6;
+  border-top: 1px solid #dce8f1;
+  padding: 15px;
+  margin-top: 10px;
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-radius: 10px;
+}
+
+.not-a-user-text {
+  padding: 0 10px 0 0;
+  margin-top: 15px;
+}
+
+.form-group {
+    max-width: 200px
+}
+
+.application-description {
+    text-align: justify;
+    margin: 5px 0 5px 5px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #dce8f1;
+    padding: 5px 0 5px 10px;
+}
+
+.application-guideliness {
+    margin-left: 15px;
+}
+
+.activities-list {
+    list-style-type: decimal;
+}
+
+.users-trends {
+    text-align: justify;
+    margin: 15px 0 5px 5px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #dce8f1;
+    padding: 5px 0 5px 30px;
+}
+
+.morning-trend {
+    margin-bottom: 10px;
+}
+
+.decreasing-trend {
+    color: rgb(241, 32, 32);
+}
+
+.increasing-trend {
+    color: rgb(126, 233, 27);
+}
+
+.week-summary {
+    text-align: justify;
+    margin: 15px 0 5px 5px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #dce8f1;
+    padding: 5px 0 5px 30px;
+}
+
+.summary-form {
+    width: 250px;
+    align-items: center;
+    display: flex;
+    flex-direction: row; 
+}
+
+.get-summary-button {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.reporting-status {
+    text-align: justify;
+    margin: 15px 0 5px 5px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #dce8f1;
+    padding: 5px 0 5px 30px;
+}
+
+.reporting-form {
+    text-align: justify;
+    margin: 15px 0 5px 5px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #dce8f1;
+    padding: 5px 0 5px 30px;
+}
+
+.error-zone {
+    text-align: justify;
+    margin: 15px 0 5px 5px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #dce8f1;
+    padding: 5px 0 5px 30px;
+    list-style-type: decimal;
+}
+
+.errors-list {
+    list-style-type: decimal;
+}

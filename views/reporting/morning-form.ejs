@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navigation.ejs') %>
+<div class="reporting-form">
+    <form method="POST" action="/behavior/reporting/addMorningReport" id="morningReportingForm" class="d-flex flex-column">
+        <div>
+            <p>Morning Report</p>
+        </div>
+        <div>
+            <label for="morningReportingDate">Reporting Date: </label>
+            <input type="date" name="morningReportingDate" value="<%= morningReportingDate %>"/>
+        </div>
+        <div>
+            <label for="sleepDuration">Sleep Duration: </label>
+            <input type="number" name="sleepDuration" min="0" max="24" step=".01" placeholder="8.25 hours" value="<%= sleepDuration %>" style="width:100px;"/>
+        </div>
+        <div>
+            <label for="sleepQuality">Sleep Quality (Very Poor - Excelent):</label>
+            <input type="range" name="sleepQuality" min="1" max="5" value="<%= sleepQuality %>">
+        </div>
+        <div>
+            <label for="morningGenericMood">Generic Mood (Very Poor - Excelent):</label>
+            <input type="range" name="morningGenericMood" min="1" max="5" value="<%= morningGenericMood %>">
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Report!" />
+        </div>
+    </form>
+</div>
+<%- include('../partials/errors.ejs') %>
+<%- include('../partials/footer.ejs') %>

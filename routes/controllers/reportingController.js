@@ -16,19 +16,12 @@ const validationRulesEveningForm = {
   eveningGenericMood: [required, isIn([1, 2, 3, 4, 5])]
 };
 
-const getReportingFormsData = async (request) => {
+const getMorningReportFormData = async(request) => {
   const data = {
-    submittedMorningReport: false,
-    submittedEveningReport: false,
     morningReportingDate: new Date().toISOString().substr(0, 10),
-    eveningReportingDate: new Date().toISOString().substr(0, 10),
     sleepDuration: "",
-    sportsAndExerciseDuration: "",
-    studyingDuration: "",
-    regularityAndQualityEating: 3,
     sleepQuality: 3,
     morningGenericMood: 3,
-    eveningGenericMood: 3,
     errors: null
   };
 
@@ -36,40 +29,55 @@ const getReportingFormsData = async (request) => {
     const body = request.body();
     const params = await body.value;
     data.morningReportingDate = params.get("morningReportingDate");
-    data.eveningReportingDate = params.get("eveningReportingDate");
     data.sleepDuration = params.get("sleepDuration");
+    data.sleepQuality = Number(params.get("sleepQuality"));
+    data.morningGenericMood = Number(params.get("morningGenericMood"));
+  }
+
+  return data;
+}
+
+const getEveningReportFormData = async(request) => {
+  const data = {
+    eveningReportingDate: new Date().toISOString().substr(0, 10),
+    sportsAndExerciseDuration: "",
+    studyingDuration: "",
+    regularityAndQualityEating: 3,
+    eveningGenericMood: 3,
+    errors: null
+  };
+
+  if (request) {
+    const body = request.body();
+    const params = await body.value;
+    data.eveningReportingDate = params.get("eveningReportingDate");
     data.sportsAndExerciseDuration = params.get("sportsAndExerciseDuration");
     data.studyingDuration = params.get("studyingDuration");
     data.regularityAndQualityEating = Number(params.get("regularityAndQualityEating"));
-    data.sleepQuality = Number(params.get("sleepQuality"));
-    data.morningGenericMood = Number(params.get("morningGenericMood"));
     data.eveningGenericMood = Number(params.get("eveningGenericMood"));
   }
 
   return data;
-};
+}
 
 const startReporting = async({render, session}) => {
   const authenticated = await session.get('authenticated');  
   const user = await session.get('user');
-  const reportingData = await getReportingFormsData();
+  const reportingData = {
+    submittedMorningReport: false,
+    submittedEveningReport: false,
+    errors: null
+  };
   const todayMorningReport = await getMorningReportForDate(user.id, new Date().toISOString().substr(0, 10));
 
   if (todayMorningReport) {
     reportingData.submittedMorningReport = true;
-    reportingData.sleepDuration = todayMorningReport.sleepDuration;
-    reportingData.sleepQuality = todayMorningReport.sleepQuality;
-    reportingData.genericMood = todayMorningReport.genericMood;
-  }
+  } 
 
   const todayEveningReport = await getEveningReportForDate(user.id, new Date().toISOString().substr(0, 10));
 
   if (todayEveningReport) {
     reportingData.submittedEveningReport = true;
-    reportingData.sportsAndExerciseDuration = todayEveningReport.sportsAndExerciseDuration;
-    reportingData.studyingDuration = todayEveningReport.studyingDuration;
-    reportingData.regularityAndQualityEating = todayEveningReport.regularityAndQualityEating;
-    reportingData.genericMood = todayEveningReport.genericMood;
   }
 
   render('./reporting/reporting.ejs', {authenticated, user, ...reportingData});
@@ -78,8 +86,7 @@ const startReporting = async({render, session}) => {
 const insertMorningReport = async ({session, request, response, render}) => {
   const authenticated = await session.get('authenticated');  
   const user = await session.get('user');
-  const reportingData = await getReportingFormsData(request);
-  console.log({reportingData});
+  const reportingData = await getMorningReportFormData(request);
 
   const [passes, errors] = await validate(reportingData, validationRulesMorningForm);
   if (!passes) {
@@ -90,21 +97,10 @@ const insertMorningReport = async ({session, request, response, render}) => {
         }
       });
     }
+
     reportingData.errors = errors;
 
-    const todayMorningReport = await getMorningReportForDate(user.id, new Date().toISOString().substr(0, 10));
-
-    if (todayMorningReport) {
-      reportingData.submittedMorningReport = true;
-    }
-  
-    const todayEveningReport = await getEveningReportForDate(user.id, new Date().toISOString().substr(0, 10));
-  
-    if (todayEveningReport) {
-      reportingData.submittedEveningReport = true;
-    }
-
-    render("./reporting/reporting.ejs", {authenticated, user, ...reportingData});
+    render("./reporting/morning-form.ejs", {authenticated, user, ...reportingData});
     return;
   }
 
@@ -125,8 +121,7 @@ const insertMorningReport = async ({session, request, response, render}) => {
 const insertEveningReport = async ({session, request, response, render}) => {
   const authenticated = await session.get('authenticated');  
   const user = await session.get('user');
-  const reportingData = await getReportingFormsData(request);
-  console.log({reportingData});
+  const reportingData = await getEveningReportFormData(request);
 
   const [passes, errors] = await validate(reportingData, validationRulesEveningForm);
   if (!passes) {
@@ -148,19 +143,7 @@ const insertEveningReport = async ({session, request, response, render}) => {
 
     reportingData.errors = errors;
 
-    const todayMorningReport = await getMorningReportForDate(user.id, new Date().toISOString().substr(0, 10));
-
-    if (todayMorningReport) {
-      reportingData.submittedMorningReport = true;
-    }
-  
-    const todayEveningReport = await getEveningReportForDate(user.id, new Date().toISOString().substr(0, 10));
-  
-    if (todayEveningReport) {
-      reportingData.submittedEveningReport = true;
-    }
-
-    render("./reporting/reporting.ejs", {authenticated, user, ...reportingData});
+    render("./reporting/evening-form.ejs", {authenticated, user, ...reportingData});
     return;
   }
 
@@ -178,4 +161,20 @@ const insertEveningReport = async ({session, request, response, render}) => {
   response.redirect('/behavior/reporting');
 }
 
-export {startReporting, insertMorningReport, insertEveningReport};
+const morningReporting = async ({session, render}) => {
+  const authenticated = await session.get('authenticated');  
+  const user = await session.get('user');
+  const reportingData = await getMorningReportFormData();
+
+  render('./reporting/morning-form.ejs', {authenticated, user, ...reportingData})
+}
+
+const eveningReporting = async ({session, render}) => {
+  const authenticated = await session.get('authenticated');  
+  const user = await session.get('user');
+  const reportingData = await getEveningReportFormData();
+
+  render('./reporting/evening-form.ejs', {authenticated, user, ...reportingData})
+}
+
+export {startReporting, insertMorningReport, insertEveningReport, morningReporting, eveningReporting};

@@ -1,23 +1,26 @@
 <%- include('./partials/header.ejs') %>
 <%- include('./partials/navigation.ejs') %>
 <div class="application-description">
+    <h4 class="application-guideliness">Application Guidelines</h4>
     The application's pupose is to provide users with the possibility of reporting daily behavior activities such as:
-    <ul>
+    <ul class="activities-list">
         <li>Sleep duration and sleep quality</li>
         <li>Time spent on sports and exercise</li>
         <li>Time spent studying</li>
         <li>Regularity and quality of eating</li>
         <li>Generic mood</li>
     </ul>
-    Furthermore, the users are able to see reports on a weekly or monthly period of their activity. 
+    The reporting is performed in two periods every day, morning and evening reports (check the Reporting Tab). </br>
+    Furthermore, the users are able to see reports on a weekly or monthly period of their activity (check the Summary Tab). 
 </div>
 <div class="users-trends">
+    <h4>Current Users Generic Mood Trends</h4>
     <div class="morning-trend">
         <div class="row morning-trend-yesterday">
-            Yesterday generic morning mood: <%= moodSummaryYesterday.morning_mood_avg %> 
+            Yesterday generic morning mood: <%= moodSummaryYesterday.morning_mood_avg %> out of 5.00
         </div>
         <div class="row morning-trend-today">
-            Today generic morning mood: <%= moodSummaryToday.morning_mood_avg %> 
+            Today generic morning mood: <%= moodSummaryToday.morning_mood_avg %> out of 5.00
         </div>
         <% if (moodSummaryYesterday.morning_mood_avg > moodSummaryToday.morning_mood_avg) { %>
             <div class="decreasing-trend">
@@ -31,10 +34,10 @@
     </div>
     <div class="evening-trend">
         <div class="row evening-trend-yesterday">
-            Yesterday generic evening mood: <%= moodSummaryYesterday.evening_mood_avg %> 
+            Yesterday generic evening mood: <%= moodSummaryYesterday.evening_mood_avg %>  out of 5.00
         </div>
         <div class="row evening-trend-today">
-            Today generic evening mood: <%= moodSummaryToday.evening_mood_avg %> 
+            Today generic evening mood: <%= moodSummaryToday.evening_mood_avg %>  out of 5.00
         </div>
         <% if (moodSummaryYesterday.evening_mood_avg > moodSummaryToday.evening_mood_avg) { %>
             <div class="decreasing-trend">

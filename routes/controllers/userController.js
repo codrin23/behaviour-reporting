@@ -130,7 +130,7 @@ const logout = async({session, response}) => {
 }
 
 const showRegisterForm = async({render}) => {
-  render('./auth/register.ejs');
+  render('./auth/register.ejs', {email: "", password: "", verification: "", errors: null});
 };
  
 

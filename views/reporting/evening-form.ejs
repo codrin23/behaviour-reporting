@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navigation.ejs') %>
+<div class="reporting-form">
+    <form method="POST" action="/behavior/reporting/addEveningReport" id="eveningReportingForm" class="d-flex flex-column">
+        <div>
+            <p>Evening Report</p>
+        </div>
+        <div>
+            <label for="eveningReportingDate">Reporting Date: </label>
+            <input type="date" name="eveningReportingDate" value="<%= eveningReportingDate %>"/>
+        </div>
+        <div>
+            <label for="sportsAndExerciseDuration ">Sports and Exercise Duration: </label>
+            <input type="number" name="sportsAndExerciseDuration" min="0" max="24" step=".01" placeholder="8.25 hours" value="<%= sportsAndExerciseDuration %>" style="width:100px;"/>
+        </div>
+        <div>
+            <label for="studyingDuration">Studying Duration:</label>
+            <input type="number" name="studyingDuration" min="0" max="24" step=".01" placeholder="8.25 hours" value="<%= studyingDuration %>" style="width:100px;"/>
+        </div>
+        <div>
+            <label for="regularityAndQualityEating">Regularity and Quality of Eating (Very Poor - Excelent):</label>
+            <input type="range" name="regularityAndQualityEating" min="1" max="5" value="<%= regularityAndQualityEating %>">
+        </div>
+        <div>
+            <label for="eveningGenericMood">Generic Mood (Very Poor - Excelent):</label>
+            <input type="range" name="eveningGenericMood" min="1" max="5" value="<%= eveningGenericMood %>">
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Report!" />
+        </div>
+    </form>
+</div>
+
+<%- include('../partials/errors.ejs') %>
+<%- include('../partials/footer.ejs') %>

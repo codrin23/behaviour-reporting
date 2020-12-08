@@ -10,8 +10,6 @@ const landing = async({render, session}) => {
   const moodSummaryToday = await computeUsersMoodForDate(new Date().toISOString().substr(0, 10));
   const moodSummaryYesterday = await computeUsersMoodForDate(previousDay.toISOString().substr(0, 10));
 
-  console.log({moodSummaryToday, moodSummaryYesterday});
-
   render('index.ejs', {authenticated, user, moodSummaryToday, moodSummaryYesterday});
 };
  

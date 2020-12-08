@@ -1,13 +1,17 @@
 <%- include('../partials/header.ejs') %>
-<h1>Register!</h1>
-<form method="POST" action="/auth/registration">
-    <label for="email">Email: </label>
-    <input type="email" name="email" />
-    <label for="password">Password: </label>
-    <input type="password" name="password" />
-    <label for="verification">Confirm password: </label>
-    <input type="password" name="verification" />
-    <input type="submit" value="Submit!" />
-</form>
+<div class="auth-form-wrapper">
+    <form method="POST" action="/auth/registration">
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Enter email" value="<%= email %>" />
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Enter password" value="<%= password %>"/>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="verification" placeholder="Re-enter password" value="<%= verification %>" />
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit!" />
+    </form>
+</div>
 <%- include('../partials/errors.ejs') %>
 <%- include('../partials/footer.ejs') %>
